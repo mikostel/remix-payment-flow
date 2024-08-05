@@ -16,7 +16,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="flex flex-col h-screen font-sans">
+      <body className="flex flex-col h-screen divide-y divide-abc-grey-30 font-sans">
         {children}
         <ScrollRestoration />
         <Scripts />

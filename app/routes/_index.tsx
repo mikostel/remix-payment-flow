@@ -15,6 +15,7 @@ export const meta: MetaFunction = () => {
 interface LoaderResponse {
   invoiceId: string;
   amountDue: string;
+  numberOfBills: number;
 }
 
 export const loader: LoaderFunction = async () => {
@@ -24,7 +25,8 @@ export const loader: LoaderFunction = async () => {
 
   return {
     invoiceId: 123456,
-    amountDue: '$600.00'
+    amountDue: '$600.00',
+    numberOfBills: 6
   };
 };
 
@@ -41,8 +43,9 @@ export default function IndexRoute() {
       <div className="flex flex-col items-center text-center gap-4 pt-24 pb-12 px-4 max-w-screen-xs mx-auto">
         <h1>Hi, Taylor</h1>
         <p>
-          You have 6 medical bills ready from ABC Health System. You can pay
-          your bills here or verify your identity to view full bill details.
+          You have {loaderData.numberOfBills} medical bills ready from ABC
+          Health System. You can pay your bills here or verify your identity to
+          view full bill details.
         </p>
       </div>
       <div className="flex-1 bg-white rounded-t-[32px] p-8">

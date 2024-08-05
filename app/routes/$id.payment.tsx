@@ -114,6 +114,7 @@ export default function PaymentRoute() {
           name="fullName"
           className="md:col-span-2"
           defaultValue={state?.fullName}
+          autoComplete="cc-name"
           validationHandler={validateName}
           validationMessage={
             actionData?.errors?.fullName ? 'This field is required' : undefined
@@ -126,6 +127,7 @@ export default function PaymentRoute() {
           className="md:col-span-2"
           onKeyDown={stripNonNumeric}
           defaultValue={state?.zipCode}
+          autoComplete="postal-code"
           validationHandler={validateZipCode}
           validationMessage={
             actionData?.errors?.zipCode ? 'This field is required' : undefined

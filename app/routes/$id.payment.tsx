@@ -73,6 +73,7 @@ export default function PaymentRoute() {
           className="md:col-span-2"
           onKeyDown={formatCardNumber}
           defaultValue={state?.creditCard}
+          autoComplete="cc-number"
           validationHandler={validateCreditCard}
           validationMessage={
             actionData?.errors?.creditCard
@@ -86,6 +87,7 @@ export default function PaymentRoute() {
           maxLength={5}
           onKeyDown={formatDate}
           defaultValue={state?.expirationDate}
+          autoComplete="cc-exp"
           validationHandler={validateDate}
           validationMessage={
             actionData?.errors?.expirationDate
@@ -99,6 +101,7 @@ export default function PaymentRoute() {
           maxLength={3}
           onKeyDown={stripNonNumeric}
           defaultValue={state?.securityCode}
+          autoComplete="cc-csc"
           validationHandler={validateSecurityCode}
           validationMessage={
             actionData?.errors?.securityCode

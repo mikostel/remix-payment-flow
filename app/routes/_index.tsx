@@ -1,5 +1,5 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node';
-import { useLoaderData, useNavigate } from '@remix-run/react';
+import { json, useLoaderData, useNavigate } from '@remix-run/react';
 import { Button } from '~/components/Button';
 
 export const meta: MetaFunction = () => {
@@ -12,22 +12,64 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+interface OrderItem {
+  orderId: number;
+  totalCost: number;
+}
+
 interface LoaderResponse {
   invoiceId: string;
   amountDue: string;
-  numberOfBills: number;
+  orderItems: OrderItem[];
 }
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = () => {
   // Make API call to fetch invoice details, ie: fetch('/invoice/:id)
   // When response is recieved, pass data into component. For this exercise,
   // return a mocked response.
 
-  return {
+  const orderItems = [
+    {
+      orderId: 54321,
+      totalCost: 100
+    },
+    {
+      orderId: 65432,
+      totalCost: 100
+    },
+    {
+      orderId: 76543,
+      totalCost: 100
+    },
+    {
+      orderId: 87654,
+      totalCost: 100
+    },
+    {
+      orderId: 98765,
+      totalCost: 100
+    },
+    {
+      orderId: 10987,
+      totalCost: 100
+    }
+  ];
+
+  // Calculate sum of orderItems
+  const totalCost = orderItems.reduce(
+    (accumulator, { totalCost }) => accumulator + totalCost,
+    0 // Initial value
+  );
+
+  return json({
     invoiceId: 123456,
-    amountDue: '$600.00',
-    numberOfBills: 6
-  };
+    orderItems,
+    amountDue: totalCost.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    })
+  });
 };
 
 export default function IndexRoute() {
@@ -43,7 +85,7 @@ export default function IndexRoute() {
       <div className="flex flex-col items-center text-center gap-4 pt-24 pb-12 px-4 max-w-screen-xs mx-auto">
         <h1>Hi, Taylor</h1>
         <p>
-          You have {loaderData.numberOfBills} medical bills ready from ABC
+          You have {loaderData.orderItems.length} medical bills ready from ABC
           Health System. You can pay your bills here or verify your identity to
           view full bill details.
         </p>

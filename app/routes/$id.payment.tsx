@@ -68,6 +68,7 @@ export default function PaymentRoute() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <TextInput
           label="Credit Card Info"
+          id="creditCard"
           name="creditCard"
           maxLength={19}
           className="md:col-span-2"
@@ -83,6 +84,7 @@ export default function PaymentRoute() {
         />
         <TextInput
           label="Expires (MM/YY)"
+          id="expirationDate"
           name="expirationDate"
           maxLength={5}
           onKeyDown={formatDate}
@@ -97,6 +99,7 @@ export default function PaymentRoute() {
         />
         <TextInput
           label="Security code (CCV)"
+          id="securityCode"
           name="securityCode"
           maxLength={3}
           onKeyDown={stripNonNumeric}
@@ -111,6 +114,7 @@ export default function PaymentRoute() {
         />
         <TextInput
           label="Name on card"
+          id="fullName"
           name="fullName"
           className="md:col-span-2"
           defaultValue={state?.fullName}
@@ -122,6 +126,7 @@ export default function PaymentRoute() {
         />
         <TextInput
           label="Zip code"
+          id="zipCode"
           name="zipCode"
           maxLength={5}
           className="md:col-span-2"

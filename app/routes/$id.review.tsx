@@ -11,8 +11,13 @@ export const loader: LoaderFunction = async () => {
   // When response is recieved, pass data into component. For this exercise,
   // return a mocked response.
 
+  const totalCost = 600;
   return {
-    amountDue: '$600.00'
+    amountDue: totalCost.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    })
   };
 };
 

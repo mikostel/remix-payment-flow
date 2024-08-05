@@ -6,8 +6,15 @@ export const validateCreditCard = (value: string) => {
 };
 
 export const validateDate = (value: string) => {
-  const currentYear = new Date().getFullYear();
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1; // Months are 0-indexed, so add 1
+  const currentYear = now.getFullYear();
   const currentYearLastTwoDigits = currentYear % 100;
+
+  // Check if MM is less than current month
+  if (Number(value.slice(0, 2)) < currentMonth) {
+    return false;
+  }
 
   // Check if YY is less than current year
   if (Number(value.slice(-2)) < currentYearLastTwoDigits) {
@@ -16,6 +23,7 @@ export const validateDate = (value: string) => {
 
   // Ensure date matches MM/YY format.
   // MM must be a value between 0-12.
+  // YY must be current year or later;
   const regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
   return regex.test(value);
 };

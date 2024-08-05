@@ -15,13 +15,18 @@ test('Validate Credit Card', () => {
 });
 
 test('Validate MM/YY', () => {
-  const currentYear = new Date().getFullYear();
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1; // Months are 0-indexed, so add 1
+  const currentYear = now.getFullYear();
   const currentYearLastTwoDigits = currentYear % 100;
 
-  expect(validateDate('12/20')).toBe(false); // Date is in the past
+  expect(validateDate('12/20')).toBe(false); // Year is in the past
   expect(validateDate(`12/${currentYearLastTwoDigits}`)).toBe(true); // Date is current year
   expect(validateDate(`12/${currentYearLastTwoDigits + 1}`)).toBe(true); // Date is in future
   expect(validateDate(`12/${currentYearLastTwoDigits}`)).toBe(true); // MM is not between 01 and 12
+  expect(validateDate(`${currentMonth - 1}/${currentYearLastTwoDigits}`)).toBe(
+    false
+  ); // Month is in the past
 });
 
 test('Validate Security Code', () => {

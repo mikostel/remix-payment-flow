@@ -18,6 +18,7 @@ interface OrderItem {
 }
 
 interface LoaderResponse {
+  firstName: string;
   invoiceId: string;
   amountDue: string;
   orderItems: OrderItem[];
@@ -61,7 +62,8 @@ export const loader: LoaderFunction = () => {
     0 // Initial value
   );
 
-  return json({
+  return {
+    firstName: 'Taylor',
     invoiceId: 123456,
     orderItems,
     amountDue: totalCost.toLocaleString('en-US', {
@@ -69,7 +71,7 @@ export const loader: LoaderFunction = () => {
       currency: 'USD',
       minimumFractionDigits: 0
     })
-  });
+  };
 };
 
 export default function IndexRoute() {
@@ -83,7 +85,7 @@ export default function IndexRoute() {
   return (
     <>
       <div className="flex flex-col items-center text-center gap-4 pt-24 pb-12 px-4 max-w-screen-xs mx-auto">
-        <h1>Hi, Taylor</h1>
+        <h1>Hi, {loaderData.firstName}</h1>
         <p>
           You have {loaderData.orderItems.length} medical bills ready from ABC
           Health System. You can pay your bills here or verify your identity to

@@ -16,7 +16,8 @@ export const loader: LoaderFunction = async () => {
     amountDue: totalCost.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD',
-      minimumFractionDigits: 0
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     })
   };
 };

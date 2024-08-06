@@ -49,7 +49,7 @@ export default function ReviewRoute() {
           </div>
         </div>
       </div>
-      <Button>Pay {state?.amountDue}</Button>
+      <Button>Pay {loaderData?.amountDue}</Button>
     </Form>
   );
 }

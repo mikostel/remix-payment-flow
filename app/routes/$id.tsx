@@ -3,9 +3,8 @@ import TransitionGroup from '~/components/TransitionGroup';
 
 export default function BillingRoute() {
   const location = useLocation();
-  const successRoute = location.pathname.includes('success');
 
-  return !successRoute ? (
+  return !location.pathname.includes('success') ? (
     <div className="md:p-8">
       <ul className="w-full bg-white mx-auto md:max-w-[576px] md:rounded-2xl divide-y md:py-4">
         <TransitionGroup

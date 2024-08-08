@@ -1,15 +1,9 @@
 import clsx from 'clsx';
 
-export enum ButtonStyle {
-  PRIMARY = 'bg-red-100',
-  SECONDARY = 'bg-blue-100'
-}
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonStyle;
-}
-
-export const Button = ({ children, ...rest }: ButtonProps) => {
+export const Button = ({
+  children,
+  ...rest
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <button
       {...rest}

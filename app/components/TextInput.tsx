@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
+  id: string;
   validationHandler(value: string): boolean;
   validationMessage?: string;
 }
@@ -11,6 +12,7 @@ interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const TextInput = ({
   label,
   name,
+  id,
   className,
   validationHandler,
   validationMessage,
@@ -41,17 +43,18 @@ export const TextInput = ({
 
   return (
     <div className={clsx('flex flex-col gap-2', className)}>
-      <label className="text-sm text-abc-grey-80 font-semibold" htmlFor={name}>
+      <label className="text-sm text-abc-grey-80 font-semibold" htmlFor={id}>
         {label}
       </label>
       <input
         {...rest}
         type="text"
+        id={id}
         name={name}
         onKeyUp={handleKeyUp}
         defaultValue={defaultValue}
         className={clsx(
-          'border rounded-lg px-4 py-3 bg-no-repeat bg-[center_right_0.75rem] text-abc-grey-100',
+          'border rounded-lg px-4 py-3 bg-no-repeat bg-[center_right_0.75rem]',
           {
             'border-abc-grey-80': !validationMessage,
             'border-abc-error bg-error pr-10': validationMessage,
